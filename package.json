@@ -1,0 +1,25 @@
+{
+  "name": "odin-inventory",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RaveTapp/odin-inventory.git"
+  },
+  "author": "RaveTapp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RaveTapp/odin-inventory/issues"
+  },
+  "homepage": "https://github.com/RaveTapp/odin-inventory#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "pg": "^8.12.0"
+  }
+}
