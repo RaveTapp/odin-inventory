@@ -3,7 +3,7 @@
     <title>Inventory</title>
   </head>
   <body>
-    <h1><%= category.name %>'s products</h1>
+    <h1><%= category.name %> products</h1>
     <ul>
       <% if (locals.products) {%> <% products.forEach(function(product) {
       %>
@@ -23,6 +23,6 @@
       </form>
       <% }); %> <% } %>
     </ul>
-    <a href="/category/<%= category.id %>/create">Create a category</a>
+    <a href="/category/<%= category.id %>/create">Add product</a>
   </body>
 </html>
