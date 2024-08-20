@@ -4,10 +4,10 @@ const categoriesController = require("../controllers/categoriesController");
 
 router.get("/", categoriesController.categoriesGet);
 
-//router.get("/new", usersController.usersNewGet);
+router.get("/create", categoriesController.categoriesCreateGet);
 
-//router.post("/new", usersController.usersNewPost);
+//router.post("/new", categoriesController.usersNewPost);
 
-//router.get("/delete", usersController.usersDeleteGet);
+//router.get("/delete", categoriesController.usersDeleteGet);
 
 module.exports = router;
