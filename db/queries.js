@@ -5,8 +5,11 @@ async function getAll(table) {
   return rows;
 }
 
+async function addCategory(category){
+    await pool.query("INSERT INTO category (name) VALUES ($1)", [category]);
+}
 
 module.exports = {
     getAll,
-
+    addCategory,
 }
