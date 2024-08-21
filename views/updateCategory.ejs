@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+<body>
+  <h1><%= title %> <%= category.name %></h1>
+  <%- include("partials/errors.ejs") %>
+  <form action="/<%= category.id %>/update" method="POST">
+    <input type="text" name="categoryName" value="<%= category.name %>" required>
+    <button type="submit">Update Category</button>
+  </form>
+  <a href="/">Back to home</a>
+</body>
+</html>

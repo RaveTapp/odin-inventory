@@ -23,9 +23,14 @@ async function getProducts(categoryId){
     return rows;
 }
 
+async function updateCategory(id, name){
+  await pool.query("UPDATE category SET name = ($1) WHERE id = ($2)", [name, id]);
+}
+
 module.exports = {
   getAll,
   addCategory,
   getCategory,
   getProducts,
+  updateCategory,
 };
