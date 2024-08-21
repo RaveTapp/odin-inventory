@@ -7,7 +7,7 @@
     <ul>
       <% if (locals.categories) {%> <% categories.forEach(function(category) {
       %>
-      <li><%= category.name %></li>
+      <li><a href="/category/<%= category.id %>"><h2 style="display: inline"><%= category.name %></h2></a>
       <a href="/<%= category.id %>/update">Update</a>
       <form
         action="/<%= category.id %>/delete"
@@ -20,7 +20,7 @@
         >
           Delete
         </button>
-      </form>
+      </form></li>
       <% }); %> <% } %>
     </ul>
     <a href="/create">Create a category</a>
