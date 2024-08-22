@@ -57,10 +57,16 @@ categoriesUpdatePost = [
   },
 ];
 
+categoriesDeleteGet = async (req, res) =>{
+  db.deleteCategory(req.params.id);
+  res.redirect("/");
+}
+
 module.exports = {
   categoriesGet,
   categoriesCreateGet,
   categoriesCreatePost,
   categoriesUpdateGet,
   categoriesUpdatePost,
+  categoriesDeleteGet,
 };
