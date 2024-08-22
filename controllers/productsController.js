@@ -31,8 +31,15 @@ const productsCreatePost = [validateProduct, async (req, res) => {
   res.redirect("/category/" + req.params.id);
 }];
 
+const productsDeletePost = async (req, res) => {
+  await db.deleteProduct(req.params.id2);
+  res.redirect("/category/" + req.params.id);
+}
+
+
 module.exports = {
   productsGet,
   productsCreateGet,
   productsCreatePost,
+  productsDeletePost,
 }
