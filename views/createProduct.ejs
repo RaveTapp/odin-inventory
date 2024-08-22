@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+<body>
+  <h1><%= title %></h1>
+  <%- include("partials/errors.ejs") %>
+  <form action="/category/<%= categoryId %>/create" method="POST">
+    <label for="productName">Product name: </label>
+    <input type="text" name="productName" id="productName" required>
+    <button type="submit">Submit</button>
+  </form>
+  <a href="/category/<%= categoryId %>">Back to category</a>
+</body>
+</html>

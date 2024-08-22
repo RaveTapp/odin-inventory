@@ -41,6 +41,10 @@ async function deleteCategory(id) {
   }
 }
 
+async function addProductInCategory(categoryId, productName){
+  await pool.query("INSERT INTO product (name, fk_category) VALUES ($1, $2)", [productName, categoryId]);
+}
+
 module.exports = {
   getAll,
   addCategory,
@@ -48,4 +52,5 @@ module.exports = {
   getProducts,
   updateCategory,
   deleteCategory,
+  addProductInCategory,
 };
