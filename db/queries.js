@@ -32,7 +32,13 @@ async function updateCategory(id, name) {
 }
 
 async function deleteCategory(id) {
-  await pool.query("DELETE FROM category WHERE id=($1)", [id]);
+  try {
+    await pool.query("DELETE FROM category WHERE id=($1)", [id]);
+  } catch(error){
+    if(error.message.includes("product_fk_category_fkey")){
+      console.log("Cannot delete category with items!");
+    };
+  }
 }
 
 module.exports = {

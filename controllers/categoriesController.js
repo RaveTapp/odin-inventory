@@ -58,7 +58,7 @@ categoriesUpdatePost = [
 ];
 
 categoriesDeleteGet = async (req, res) =>{
-  db.deleteCategory(req.params.id);
+  await db.deleteCategory(req.params.id);
   res.redirect("/");
 }
 
