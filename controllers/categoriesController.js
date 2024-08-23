@@ -39,7 +39,7 @@ const categoriesUpdateGet = async (req, res) => {
   });
 };
 
-categoriesUpdatePost = [
+const categoriesUpdatePost = [
   validateCategory,
   async (req, res) => {
     const category = await db.getCategory(req.params.id); 
@@ -57,7 +57,7 @@ categoriesUpdatePost = [
   },
 ];
 
-categoriesDeleteGet = async (req, res) =>{
+const categoriesDeleteGet = async (req, res) =>{
   await db.deleteCategory(req.params.id);
   res.redirect("/");
 }

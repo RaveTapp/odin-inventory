@@ -16,6 +16,13 @@ async function getCategory(id) {
   return rows[0];
 }
 
+async function getProduct(productId) {
+  const { rows } = await pool.query("SELECT * FROM product WHERE id=($1)", [
+    productId,
+  ]);
+  return rows[0];
+}
+
 async function getProducts(categoryId) {
   const { rows } = await pool.query(
     "SELECT * FROM product WHERE fk_category=($1)",
@@ -34,28 +41,40 @@ async function updateCategory(id, name) {
 async function deleteCategory(id) {
   try {
     await pool.query("DELETE FROM category WHERE id=($1)", [id]);
-  } catch(error){
-    if(error.message.includes("product_fk_category_fkey")){
+  } catch (error) {
+    if (error.message.includes("product_fk_category_fkey")) {
       console.log("Cannot delete category with items!");
-    };
+    }
   }
+}
+
+async function updateProduct(id, name){
+  await pool.query("UPDATE product SET name = ($1) WHERE id = ($2)", [
+    name,
+    id,
+  ]);
 }
 
 async function deleteProduct(id) {
   await pool.query("DELETE FROM product WHERE id=($1)", [id]);
 }
 
-async function addProductInCategory(categoryId, productName){
-  await pool.query("INSERT INTO product (name, fk_category) VALUES ($1, $2)", [productName, categoryId]);
+async function addProductInCategory(categoryId, productName) {
+  await pool.query("INSERT INTO product (name, fk_category) VALUES ($1, $2)", [
+    productName,
+    categoryId,
+  ]);
 }
 
 module.exports = {
   getAll,
   addCategory,
   getCategory,
+  getProduct,
   getProducts,
   updateCategory,
   deleteCategory,
   addProductInCategory,
+  updateProduct,
   deleteProduct,
 };

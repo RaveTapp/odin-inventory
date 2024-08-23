@@ -15,7 +15,7 @@ const validateProduct = [
   body("productName")
     .isAlpha()
     .withMessage("Product must only contain letters"),
-];
+]; //Doesn't allow space
 
 const productsCreatePost = [validateProduct, async (req, res) => {
   const errors = validationResult(req);
@@ -31,6 +31,34 @@ const productsCreatePost = [validateProduct, async (req, res) => {
   res.redirect("/category/" + req.params.id);
 }];
 
+const productsUpdateGet = async (req, res) => {
+  const product = await db.getProduct(req.params.id2);
+  res.render("updateProduct", {
+    title: "Update product",
+    categoryId: req.params.id,
+    product: product,
+  });
+}
+
+const productsUpdatePost = [
+  validateProduct,
+  async (req, res) => {
+    const product = await db.getProduct(req.params.id2);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("updateProduct", {
+        title: "Update product",
+        categoryId: req.params.id,
+        product: product,
+        errors: errors.array(),
+      });
+    }
+    const { productName } = req.body;
+    await db.updateProduct(req.params.id2, productName);
+    res.redirect("/category/" + req.params.id);
+  },
+];
+
 const productsDeletePost = async (req, res) => {
   await db.deleteProduct(req.params.id2);
   res.redirect("/category/" + req.params.id);
@@ -39,6 +67,8 @@ const productsDeletePost = async (req, res) => {
 
 module.exports = {
   productsGet,
+  productsUpdateGet,
+  productsUpdatePost,
   productsCreateGet,
   productsCreatePost,
   productsDeletePost,
